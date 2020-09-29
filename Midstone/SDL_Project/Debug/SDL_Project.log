@@ -6,15 +6,15 @@
   MMath.cpp
   Scene0.cpp
   Scene1.cpp
-C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene1.cpp(58,85): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
-C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene1.cpp(58,79): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
-C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene1.cpp(58,73): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\sjdme\Desktop\Midstone\Midstone\SDL_Project\Scene1.cpp(58,85): warning C4244:  'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\sjdme\Desktop\Midstone\Midstone\SDL_Project\Scene1.cpp(58,79): warning C4244:  'argument': conversion from 'float' to 'Uint8', possible loss of data
   Scene2.cpp
-C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene2.cpp(54,85): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
-C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene2.cpp(54,79): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
-C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene2.cpp(54,73): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\sjdme\Desktop\Midstone\Midstone\SDL_Project\Scene1.cpp(58,73): warning C4244:  'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\sjdme\Desktop\Midstone\Midstone\SDL_Project\Scene2.cpp(54,85): warning C4244:  'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\sjdme\Desktop\Midstone\Midstone\SDL_Project\Scene2.cpp(54,79): warning C4244:  'argument': conversion from 'float' to 'Uint8', possible loss of data
   Timer.cpp
   VMath.cpp
   Window.cpp
   Generating Code...
-  SDL_Project.vcxproj -> C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\Debug\SDL_Project.exe
+C:\Users\sjdme\Desktop\Midstone\Midstone\SDL_Project\Scene2.cpp(54,73): warning C4244:  'argument': conversion from 'float' to 'Uint8', possible loss of data
+  SDL_Project.vcxproj -> C:\Users\sjdme\Desktop\Midstone\Midstone\Debug\SDL_Project.exe
