@@ -9,9 +9,12 @@ protected:
 	SDL_Window* window;
 	Matrix4 projection;
 
-	Body* character;
-	SDL_Surface* charImage;
-	Vec3 charPos;
+	Body* character1;
+	SDL_Surface* char1Image;
+	Vec3 char1Pos;
+	Body* character2;
+	SDL_Surface* char2Image;
+	Vec3 char2Pos;
 public:
 	Scene3(SDL_Window* sdlWindow);
 	~Scene3();

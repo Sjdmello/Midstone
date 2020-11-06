@@ -1,12 +1,5 @@
 #include "Body.h"
 #include <iostream>
-Body::Body() {
-	mass = 1.0f;
-	position.x = position.y = position.z = 0.0f;
-	velocity.x = velocity.y = velocity.z = 0.0f;
-	acceleration.x = acceleration.y = acceleration.z = 0.0f;
-	r = 1.0f;
-}
 
 Body::Body(Vec3 _position, Vec3 _velocity, Vec3 _acceleration, float _mass) {
 	position.x = _position.x;
@@ -22,14 +15,13 @@ Body::Body(Vec3 _position, Vec3 _velocity, Vec3 _acceleration, float _mass) {
 	acceleration.z = _acceleration.z;
 
 	r = 1.0f;
-
 	mass = _mass;
 }
 
 Body::~Body() {
 }
 
-void Body::Update(const float deltatime, float time, float force) {
+void Body::Update(const float deltatime, float time) {
 
 	position.x += velocity.x * deltatime + 0.5f * acceleration.x * deltatime * deltatime;
 	velocity.x += acceleration.x * deltatime;
@@ -39,16 +31,10 @@ void Body::Update(const float deltatime, float time, float force) {
 
 	position.z += velocity.z * deltatime + 0.5f * acceleration.z * deltatime * deltatime;
 	velocity.z += acceleration.z * deltatime;
-
-	//printf("%f   %f   %f   %f   %f\n", time, force, acceleration.x, velocity.x, position.x);
 }
 
 void Body::ApplyForce(Vec3 force) {
 	acceleration.x = force.x / mass;
 	acceleration.y = force.y / mass;
 	acceleration.z = force.z / mass;
-}
-
-Vec3 Body::GetPos() {
-	return position;
 }

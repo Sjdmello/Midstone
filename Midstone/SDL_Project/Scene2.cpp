@@ -44,7 +44,7 @@ void Scene2::Update(const float time) {
 	}
 
 	for (int i = 0; i < 2; i++) {
-		bodies[i]->Update(time, 0.0f, 0.0f);
+		bodies[i]->Update(time, 0.0f);
 	}
 }
 
