@@ -18,31 +18,28 @@ bool Scene3::OnCreate() {
 	projection = ndc * ortho;
 
 	//filling in the info for the characters, probably gonna make these char classes rather than bodies later
-	character1 = new Body(Vec3(0.0f, 50.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 386.0f);
-	char1Image = IMG_Load("Ball.png");
-	char1Pos = character1->GetPos();
-
-	character2 = new Body(Vec3(1.0f, 50.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 386.0f);
-	char2Image = IMG_Load("Ball2.png");
-	char2Pos = character2->GetPos();
+	charBody = new Body(Vec3(10.0f, 20.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	character = new Character(charBody, IMG_Load("Ball.png"));
 
 	return true;
 }
 
 void Scene3::OnDestroy() {
-
+	//vacuum sealed
+	delete charBody;
+	delete character;
 }
 
 void Scene3::Update(const float time) {
-
+	character->Update(time);
 }
 
 void Scene3::Render() {
 	SDL_Surface* screenSurface = SDL_GetWindowSurface(window);
 	SDL_FillRect(screenSurface, nullptr, SDL_MapRGB(screenSurface->format, 0.0f, 0.0f, 0.0f));
 
-	//temporary render to apease daniel.
-	Vec3 position = char1Pos;
+	//bunch of math to get the positions right
+	Vec3 position = character->getPos();
 	Vec3 screenPosition = projection * position;
 	SDL_Rect dstrect;
 	dstrect.x = static_cast<int>(screenPosition.x);
@@ -50,20 +47,11 @@ void Scene3::Render() {
 	dstrect.h = 0;
 	dstrect.w = 0;
 
-	SDL_BlitSurface(char1Image, nullptr, screenSurface, &dstrect);
-
-	position = char2Pos;
-	screenPosition = projection * position;
-	dstrect.x = static_cast<int>(screenPosition.x);
-	dstrect.y = static_cast<int>(screenPosition.y);
-	dstrect.h = 0;
-	dstrect.w = 0;
-
-	SDL_BlitSurface(char2Image, nullptr, screenSurface, &dstrect);
-
+	//actually putting stuff on screen
+	SDL_BlitSurface(character->getImage(), nullptr, screenSurface, &dstrect);
 	SDL_UpdateWindowSurface(window);
 }
 
 void Scene3::HandleEvents(const SDL_Event& event) {
-
+	character->HandleEvents(event);
 }

@@ -13,14 +13,19 @@ protected:
 	Vec3 position;
 	Vec3 velocity;
 	Vec3 acceleration;
-	SDL_Surface* image;
 public:
 	Body(Vec3 _position, Vec3 _velocity, Vec3 _acceleration, float _mass);
 	~Body();
 
-	void Update(const float deltaTime, float time);
+	void Update(const float deltaTime);
 	void ApplyForce(Vec3 Force);
 
 	inline Vec3 GetPos() { return position; }
+	inline Vec3 GetVel() { return velocity; }
+	inline Vec3 GetAccel() { return acceleration; }
+
+	inline void SetPos(Vec3 newPos) { position = newPos; }
+	inline void SetVel(Vec3 newVel) { velocity = newVel; }
+	inline void SetAccel(Vec3 newAccel) { acceleration = newAccel; }
 };
 #endif

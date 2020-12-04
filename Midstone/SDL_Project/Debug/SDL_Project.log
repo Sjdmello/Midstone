@@ -1,7 +1,2 @@
-﻿  GameManager.cpp
-  Scene3.cpp
-C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene3.cpp(42,85): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
-C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene3.cpp(42,79): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
-C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene3.cpp(42,73): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
-  Generating Code...
+﻿  Character.cpp
   SDL_Project.vcxproj -> C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\Debug\SDL_Project.exe

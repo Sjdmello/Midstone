@@ -21,7 +21,7 @@ Body::Body(Vec3 _position, Vec3 _velocity, Vec3 _acceleration, float _mass) {
 Body::~Body() {
 }
 
-void Body::Update(const float deltatime, float time) {
+void Body::Update(const float deltatime) {
 
 	position.x += velocity.x * deltatime + 0.5f * acceleration.x * deltatime * deltatime;
 	velocity.x += acceleration.x * deltatime;
