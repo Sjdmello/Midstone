@@ -12,6 +12,10 @@ protected:
 
 	Character* character;
 	Body* charBody;
+
+	//delete this later
+	Vec3 min;
+	Vec3 max;
 	
 public:
 	Scene3(SDL_Window* sdlWindow);

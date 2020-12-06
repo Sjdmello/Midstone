@@ -18,20 +18,38 @@ bool Scene3::OnCreate() {
 	projection = ndc * ortho;
 
 	//filling in the info for the characters, probably gonna make these char classes rather than bodies later
-	charBody = new Body(Vec3(10.0f, 20.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
+	charBody = new Body(Vec3(10.0f, 20.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 0.1f);
 	character = new Character(charBody, IMG_Load("Ball.png"));
+
+	//remove later
+	min = Vec3(0.0f, 0.0f, 0.0f);
+	max = Vec3(75.0f, 100.0f, 1.0f);
 
 	return true;
 }
 
 void Scene3::OnDestroy() {
 	//vacuum sealed
-	delete charBody;
-	delete character;
+	if (charBody) delete charBody;
+	if (character) delete character;
 }
 
 void Scene3::Update(const float time) {
 	character->Update(time);
+
+	//temp checks to keep character on screen
+	if (character->getPos().x > max.x - character->getPhys()->GetRad()) {
+		character->getPhys()->SetPos(Vec3(max.x - character->getPhys()->GetRad(), character->getPos().y, character->getPos().z));
+	}
+	if (character->getPos().x < min.x + character->getPhys()->GetRad()) {
+		character->getPhys()->SetPos(Vec3(min.x + character->getPhys()->GetRad(), character->getPos().y, character->getPos().z));
+	}
+	if (character->getPos().y > max.y - character->getPhys()->GetRad()) {
+		character->getPhys()->SetPos(Vec3(character->getPos().x, max.y - character->getPhys()->GetRad(), character->getPos().z));
+	}
+	if (character->getPos().y < min.y + character->getPhys()->GetRad()) {
+		character->getPhys()->SetPos(Vec3(character->getPos().x, min.y + character->getPhys()->GetRad(), character->getPos().z));
+	}
 }
 
 void Scene3::Render() {

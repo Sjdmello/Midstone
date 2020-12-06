@@ -9,18 +9,46 @@ Character::~Character() {
 }
 
 bool Character::onCreate() {
+	moveDir = Vec3(0.0f, 0.0f, 0.0f);
+	currentVel = Vec3(0.0f, 0.0f, 0.0f);
+	tickSwapper = true;
+	velCap = 10.0f;
+
 	return true;
 }
 
 void Character::onDestroy() {
 	//don't want those memory leaks
-	delete physics;
-	delete characterImage;
+	if (physics) delete physics;
+	if (characterImage) delete characterImage;
 }
 
 void Character::Update(const float deltatime) {
-	//applies gravity to character and updates the body
-	physics->ApplyForce(Vec3(0.0f, -9.8f, 0.0f));
+	/*doing this because the applyforce sets the accel directly so if we do multiple applyforce 
+	on the same tick it overwrites. We're running at 60fps so it should be fine. */
+	if (tickSwapper) {
+		//applies 1/30th of gravity to character, runs every other frame
+		physics->ApplyForce(Vec3(0.0f, -5.0f, 0.0f));
+		tickSwapper = !tickSwapper;
+	} else {
+		//applies movement to character
+		physics->ApplyForce(moveDir);
+		tickSwapper = !tickSwapper;
+	}
+
+	//sets a cap of 10 on the velocity
+	currentVel = physics->GetVel();
+	if (currentVel.x > 10) {
+		physics->SetVel(Vec3(10.0f, currentVel.y, currentVel.z));
+	} else if (currentVel.x < -10) {
+		physics->SetVel(Vec3(-10.0f, currentVel.y, currentVel.z));
+	}
+	if (currentVel.y > 10) {
+		physics->SetVel(Vec3(currentVel.x, 10.0f, currentVel.z));
+	} else if (currentVel.y < -10) {
+		physics->SetVel(Vec3(currentVel.x, -10.0f, currentVel.z));
+	}
+
 	physics->Update(deltatime);
 }
 
@@ -32,16 +60,16 @@ void Character::HandleEvents(const SDL_Event& event) {
 	if (event.type == SDL_KEYDOWN) {
 		switch (event.key.keysym.scancode) {
 		case SDL_SCANCODE_A:
-			printf("A is pressed\n");
-			physics->ApplyForce(Vec3(-5.0f, 0.0f, 0.0f));
+			//printf("A is pressed\n");
+			moveDir = Vec3(-5.0f, 0.0f, 0.0f);
 			break;
 		case SDL_SCANCODE_D:
-			printf("D is pressed\n");
-			physics->ApplyForce(Vec3(5.0f, 0.0f, 0.0f));
+			//printf("D is pressed\n");
+			moveDir = Vec3(5.0f, 0.0f, 0.0f);
 			break;
 		case SDL_SCANCODE_SPACE:
-			printf("SPACE is pressed\n");
-			physics->ApplyForce(Vec3(0.0f, 20.0f, 0.0f));
+			//printf("SPACE is pressed\n");
+			moveDir = Vec3(0.0f, 20.0f, 0.0f);
 			break;
 		default:
 			break;

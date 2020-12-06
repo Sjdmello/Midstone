@@ -7,6 +7,10 @@ class Character:public GameObject{
 protected:
 	SDL_Surface* characterImage;
 	Body* physics;
+	Vec3 moveDir;
+	Vec3 currentVel;
+	bool tickSwapper;
+	float velCap;
 public:
 	Character(Body* body, SDL_Surface* sprite);
 	~Character();
