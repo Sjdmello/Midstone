@@ -14,7 +14,7 @@ bool Scene3::OnCreate() {
 	int w, h;
 	SDL_GetWindowSize(window, &w, &h);
 	Matrix4 ndc = MMath::viewportNDC(w, h);
-	Matrix4 ortho = MMath::orthographic(0.0, 75.0, 0.0, 100.0, 0.0, 1.0);
+	Matrix4 ortho = MMath::orthographic(0.0, 100.0, 0.0, 150.0, 0.0, 1.0);
 	projection = ndc * ortho;
 
 	//filling in the info for the characters, probably gonna make these char classes rather than bodies later
@@ -23,7 +23,7 @@ bool Scene3::OnCreate() {
 
 	//remove later
 	min = Vec3(0.0f, 0.0f, 0.0f);
-	max = Vec3(75.0f, 100.0f, 1.0f);
+	max = Vec3(100.0f, 150.0f, 1.0f);
 
 	return true;
 }
@@ -56,10 +56,20 @@ void Scene3::Render() {
 	SDL_Surface* screenSurface = SDL_GetWindowSurface(window);
 	SDL_FillRect(screenSurface, nullptr, SDL_MapRGB(screenSurface->format, 0.0f, 0.0f, 0.0f));
 
-	//bunch of math to get the positions right
-	Vec3 position = character->getPos();
+	Vec3 position = Vec3(0.0f, 150.0f, 0.0f);
 	Vec3 screenPosition = projection * position;
 	SDL_Rect dstrect;
+	dstrect.x = static_cast<int>(screenPosition.x);
+	dstrect.y = static_cast<int>(screenPosition.y);
+	dstrect.h = 0;
+	dstrect.w = 0;
+
+	SDL_BlitSurface(IMG_Load("Background.jpg"), nullptr, screenSurface, &dstrect);
+
+	//bunch of math to get the positions right
+	position = character->getPos();
+	screenPosition = projection * position;
+	dstrect;
 	dstrect.x = static_cast<int>(screenPosition.x);
 	dstrect.y = static_cast<int>(screenPosition.y);
 	dstrect.h = 0;

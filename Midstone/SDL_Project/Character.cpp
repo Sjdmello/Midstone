@@ -35,7 +35,7 @@ void Character::Update(const float deltatime) {
 		physics->ApplyForce(moveDir);
 		tickSwapper = !tickSwapper;
 	}
-
+	
 	//sets a cap of 10 on the velocity
 	currentVel = physics->GetVel();
 	if (currentVel.x > 10) {
