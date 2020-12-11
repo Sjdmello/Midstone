@@ -28,28 +28,29 @@ void Character::Update(const float deltatime) {
 	on the same tick it overwrites. We're running at 60fps so it should be fine. */
 	if (tickSwapper) {
 		//applies 1/30th of gravity to character, runs every other frame
-		physics->ApplyForce(Vec3(0.0f, -5.0f, 0.0f));
-		tickSwapper = !tickSwapper;
+		physics->ApplyForce(Vec3(0.0f, -0.327f, 0.0f));
 	} else {
 		//applies movement to character
 		physics->ApplyForce(moveDir);
-		tickSwapper = !tickSwapper;
 	}
 	
 	//sets a cap of 10 on the velocity
 	currentVel = physics->GetVel();
-	if (currentVel.x > 10) {
-		physics->SetVel(Vec3(10.0f, currentVel.y, currentVel.z));
-	} else if (currentVel.x < -10) {
-		physics->SetVel(Vec3(-10.0f, currentVel.y, currentVel.z));
+	if (currentVel.x > 20) {
+		physics->SetVel(Vec3(19.0f, currentVel.y, currentVel.z));
+	} else if (currentVel.x < -20) {
+		physics->SetVel(Vec3(-19.0f, currentVel.y, currentVel.z));
 	}
-	if (currentVel.y > 10) {
-		physics->SetVel(Vec3(currentVel.x, 10.0f, currentVel.z));
-	} else if (currentVel.y < -10) {
-		physics->SetVel(Vec3(currentVel.x, -10.0f, currentVel.z));
+	if (currentVel.y > 20) {
+		physics->SetVel(Vec3(currentVel.x, 19.0f, currentVel.z));
+	} else if (currentVel.y < -20) {
+		physics->SetVel(Vec3(currentVel.x, -19.0f, currentVel.z));
 	}
 
 	physics->Update(deltatime);
+
+	tickSwapper = !tickSwapper;
+	moveDir = Vec3(0.0f, 0.0f, 0.0f);
 }
 
 void Character::Render() const {
@@ -69,7 +70,7 @@ void Character::HandleEvents(const SDL_Event& event) {
 			break;
 		case SDL_SCANCODE_SPACE:
 			//printf("SPACE is pressed\n");
-			moveDir = Vec3(0.0f, 20.0f, 0.0f);
+			moveDir = Vec3(0.0f, 40.9f, 0.0f);
 			break;
 		default:
 			break;

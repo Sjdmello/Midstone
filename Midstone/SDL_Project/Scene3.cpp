@@ -17,13 +17,13 @@ bool Scene3::OnCreate() {
 	Matrix4 ortho = MMath::orthographic(0.0, 100.0, 0.0, 150.0, 0.0, 1.0);
 	projection = ndc * ortho;
 
-	//filling in the info for the characters, probably gonna make these char classes rather than bodies later
+	//filling in the info for the characters
 	charBody = new Body(Vec3(10.0f, 20.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 0.1f);
 	character = new Character(charBody, IMG_Load("Ball.png"));
 
 	//remove later
-	min = Vec3(0.0f, 0.0f, 0.0f);
-	max = Vec3(100.0f, 150.0f, 1.0f);
+	min = Vec3(0.0f, 40.0f, 0.0f);
+	max = Vec3(95.0f, 150.0f, 1.0f);
 
 	return true;
 }
