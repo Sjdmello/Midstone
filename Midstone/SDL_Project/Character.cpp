@@ -98,8 +98,18 @@ void Character::HandleEvents(const SDL_Event& event) {
 	}
 
 	if (event.type == SDL_KEYUP) {
-		isMoving = false;
+		switch (event.key.keysym.scancode) {
+		case SDL_SCANCODE_A:
+			isMoving = false;
+			moveDir = Vec3(0.0f, 0.0f, 0.0f);
+			break;
+		case SDL_SCANCODE_D:
+			isMoving = false;
+			moveDir = Vec3(0.0f, 0.0f, 0.0f);
+			break;
+		default:
+			break;
+		}
 		moveDir = Vec3(0.0f, 0.0f, 0.0f);
 	}
-	
 }
