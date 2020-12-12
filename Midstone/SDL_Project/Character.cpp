@@ -2,6 +2,8 @@
 Character::Character(Body* body, SDL_Surface* sprite) {
 	physics = body;
 	characterImage = sprite;
+
+	onCreate();
 }
 
 Character::~Character() {
@@ -12,7 +14,8 @@ bool Character::onCreate() {
 	moveDir = Vec3(0.0f, 0.0f, 0.0f);
 	currentVel = Vec3(0.0f, 0.0f, 0.0f);
 	tickSwapper = true;
-	velCap = 10.0f;
+	velCap = 20.0f;
+	isMoving = false;
 
 	return true;
 }
@@ -27,30 +30,45 @@ void Character::Update(const float deltatime) {
 	/*doing this because the applyforce sets the accel directly so if we do multiple applyforce 
 	on the same tick it overwrites. We're running at 60fps so it should be fine. */
 	if (tickSwapper) {
-		//applies 1/30th of gravity to character, runs every other frame
-		physics->ApplyForce(Vec3(0.0f, -0.327f, 0.0f));
+		//applies gravity to character.
+		physics->ApplyForce(Vec3(0.0f, -10.0f, 0.0f));
 	} else {
-		//applies movement to character
+		//applies movement to character.
 		physics->ApplyForce(moveDir);
 	}
 	
-	//sets a cap of 10 on the velocity
 	currentVel = physics->GetVel();
-	if (currentVel.x > 20) {
-		physics->SetVel(Vec3(19.0f, currentVel.y, currentVel.z));
-	} else if (currentVel.x < -20) {
-		physics->SetVel(Vec3(-19.0f, currentVel.y, currentVel.z));
+
+	//sets a cap on the velocity
+	currentVel = physics->GetVel();
+	if (currentVel.x > velCap) {
+		physics->SetVel(Vec3(velCap -1.0f, currentVel.y, currentVel.z));
+	} else if (currentVel.x < -velCap) {
+		physics->SetVel(Vec3(-velCap + 1.0f, currentVel.y, currentVel.z));
 	}
-	if (currentVel.y > 20) {
-		physics->SetVel(Vec3(currentVel.x, 19.0f, currentVel.z));
-	} else if (currentVel.y < -20) {
-		physics->SetVel(Vec3(currentVel.x, -19.0f, currentVel.z));
+	if (currentVel.y > velCap) {
+		physics->SetVel(Vec3(currentVel.x, velCap - 1.0f, currentVel.z));
+	} else if (currentVel.y < -velCap) {
+		physics->SetVel(Vec3(currentVel.x, -velCap + 1.0f, currentVel.z));
 	}
 
+	//making the character slow to a stop a few frames after release of button.
+	if (!isMoving) {
+		if (currentVel.x >= 1.0f) {
+			physics->SetVel(Vec3(currentVel.x - 0.5f, currentVel.y, currentVel.z));
+		} else if (currentVel.x <= 1.0f && currentVel.x > 0.0f) {
+			physics->SetVel(Vec3(0.0f, currentVel.y, currentVel.z));
+		}
+		if (currentVel.x <= -1.0f) {
+			physics->SetVel(Vec3(currentVel.x + 0.5f, currentVel.y, currentVel.z));
+		} else if (currentVel.x >= -1.0f && currentVel.x < 0.0f) {
+			physics->SetVel(Vec3(0.0f, currentVel.y, currentVel.z));
+		}
+	}
+
+	//update and switch active frame.
 	physics->Update(deltatime);
-
 	tickSwapper = !tickSwapper;
-	moveDir = Vec3(0.0f, 0.0f, 0.0f);
 }
 
 void Character::Render() const {
@@ -62,18 +80,26 @@ void Character::HandleEvents(const SDL_Event& event) {
 		switch (event.key.keysym.scancode) {
 		case SDL_SCANCODE_A:
 			//printf("A is pressed\n");
-			moveDir = Vec3(-5.0f, 0.0f, 0.0f);
+			moveDir = Vec3(-20.0f, 0.0f, 0.0f);
+			isMoving = true;
 			break;
 		case SDL_SCANCODE_D:
 			//printf("D is pressed\n");
-			moveDir = Vec3(5.0f, 0.0f, 0.0f);
+			moveDir = Vec3(20.0f, 0.0f, 0.0f);
+			isMoving = true;
 			break;
 		case SDL_SCANCODE_SPACE:
 			//printf("SPACE is pressed\n");
-			moveDir = Vec3(0.0f, 40.9f, 0.0f);
+			moveDir = Vec3(0.0f, 50.0f, 0.0f);
 			break;
 		default:
 			break;
 		}
 	}
+
+	if (event.type == SDL_KEYUP) {
+		isMoving = false;
+		moveDir = Vec3(0.0f, 0.0f, 0.0f);
+	}
+	
 }

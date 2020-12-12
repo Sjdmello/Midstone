@@ -16,6 +16,7 @@ protected:
 	//delete this later
 	Vec3 min;
 	Vec3 max;
+	int frameCounter;
 	
 public:
 	Scene3(SDL_Window* sdlWindow);

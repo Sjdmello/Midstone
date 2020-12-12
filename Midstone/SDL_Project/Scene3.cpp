@@ -18,12 +18,13 @@ bool Scene3::OnCreate() {
 	projection = ndc * ortho;
 
 	//filling in the info for the characters
-	charBody = new Body(Vec3(10.0f, 20.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 0.1f);
+	charBody = new Body(Vec3(10.0f, 20.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	character = new Character(charBody, IMG_Load("Ball.png"));
 
 	//remove later
 	min = Vec3(0.0f, 40.0f, 0.0f);
 	max = Vec3(95.0f, 150.0f, 1.0f);
+	frameCounter = 0;
 
 	return true;
 }
@@ -36,6 +37,7 @@ void Scene3::OnDestroy() {
 
 void Scene3::Update(const float time) {
 	character->Update(time);
+	printf("%f %f %f \n", character->getVel().x, character->getVel().y, character->getVel().z);
 
 	//temp checks to keep character on screen
 	if (character->getPos().x > max.x - character->getPhys()->GetRad()) {

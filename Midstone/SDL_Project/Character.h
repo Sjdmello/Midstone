@@ -10,6 +10,7 @@ protected:
 	Vec3 moveDir;
 	Vec3 currentVel;
 	bool tickSwapper;
+	bool isMoving;
 	float velCap;
 public:
 	Character(Body* body, SDL_Surface* sprite);
