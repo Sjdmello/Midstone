@@ -3,7 +3,7 @@
 
 bool Collider::SphereSphereCollision(const Body& body1, const Body& body2) {
 	float dist = VMath::distance(body1.position, body2.position);
-	printf("%f\n", dist);
+	//printf("%f\n", dist);
 	if (dist < (body1.r + body2.r)) {
 		return true;
 	}

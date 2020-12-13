@@ -16,6 +16,8 @@ bool Character::onCreate() {
 	tickSwapper = true;
 	velCap = 20.0f;
 	isMoving = false;
+	CharacterOnGround = false;
+	CanJump = false;
 
 	return true;
 }
@@ -29,9 +31,28 @@ void Character::onDestroy() {
 void Character::Update(const float deltatime) {
 	/*doing this because the applyforce sets the accel directly so if we do multiple applyforce 
 	on the same tick it overwrites. We're running at 60fps so it should be fine. */
+
+	//printf("%f %f %f \n", physics->GetPos().x, physics->GetPos().y, physics->GetPos().z);
+	//system.debug(physics->GetVel());
+	system.debug(physics->GetPos());
+
+	if (physics->GetPos().y == 37.0f) {
+		CharacterOnGround = true;
+	}
+	if (CharacterOnGround == true) {
+		CanJump = true;
+	}
+
+
 	if (tickSwapper) {
 		//applies gravity to character.
-		physics->ApplyForce(Vec3(0.0f, -10.0f, 0.0f));
+		if (!CharacterOnGround) {
+			physics->ApplyForce(Vec3(0.0f, -2.0f, 0.0f));
+		}
+		else
+		{
+			physics->SetVel(Vec3(currentVel.x, 0.0f, currentVel.z));
+		}
 	} else {
 		//applies movement to character.
 		physics->ApplyForce(moveDir);
@@ -69,6 +90,8 @@ void Character::Update(const float deltatime) {
 	//update and switch active frame.
 	physics->Update(deltatime);
 	tickSwapper = !tickSwapper;
+	CharacterOnGround = false;
+	//moveDir = Vec3(0.0f, 0.0f, 0.0f);
 }
 
 void Character::Render() const {
@@ -79,15 +102,20 @@ void Character::HandleEvents(const SDL_Event& event) {
 	if (event.type == SDL_KEYDOWN) {
 		switch (event.key.keysym.scancode) {
 		case SDL_SCANCODE_A:
-			moveDir = Vec3(-20.0f, 0.0f, 0.0f);
+			moveDir = Vec3(-15.0f, 0.0f, 0.0f);
 			isMoving = true;
 			break;
 		case SDL_SCANCODE_D:
-			moveDir = Vec3(20.0f, 0.0f, 0.0f);
+			moveDir = Vec3(15.0f, 0.0f, 0.0f);
 			isMoving = true;
 			break;
 		case SDL_SCANCODE_SPACE:
-			moveDir = Vec3(0.0f, 50.0f, 0.0f);
+			if (CanJump == true) {
+				moveDir = Vec3(0.0f, 80.0f, 0.0f);
+				CanJump = false;
+				CharacterOnGround = false;
+			}
+
 			break;
 		default:
 			break;

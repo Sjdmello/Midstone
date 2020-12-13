@@ -2,6 +2,7 @@
 #define CHARACTER_H
 #include "GameObject.h"
 #include "Body.h"
+#include "Debug.h"
 #include <SDL.h>
 class Character:public GameObject{
 protected:
@@ -11,7 +12,10 @@ protected:
 	Vec3 currentVel;
 	bool tickSwapper;
 	bool isMoving;
+	bool CharacterOnGround;
+	bool CanJump;
 	float velCap;
+	Debug system;
 
 public:
 	Character(Body* body, SDL_Surface* sprite);
@@ -27,5 +31,9 @@ public:
 	inline Vec3 getPos() { return physics->GetPos(); }
 	inline Vec3 getVel() { return physics->GetVel(); }
 	inline Vec3 getAccel() { return physics->GetAccel(); }
+
+	inline bool getOnGround() { return CharacterOnGround; }
+	inline void setOnGround(bool newOnGround) { CharacterOnGround = newOnGround; }
+
 };
 #endif

@@ -44,7 +44,7 @@ void SpikeBall::Update(const float deltaTime) {
 		physics->SetVel(Vec3(currentVel.x, -velCap + 1.0f, currentVel.z));
 	}
 
-	system.debug(physics->GetVel());
+	//system.debug(physics->GetVel());
 
 	physics->Update(deltaTime);
 }

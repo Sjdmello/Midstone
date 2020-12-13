@@ -14,7 +14,7 @@ Body::Body(Vec3 _position, Vec3 _velocity, Vec3 _acceleration, float _mass) {
 	acceleration.y = _acceleration.y;
 	acceleration.z = _acceleration.z;
 
-	r = 1.0f;
+	r = 2.0f;
 	mass = _mass;
 }
 

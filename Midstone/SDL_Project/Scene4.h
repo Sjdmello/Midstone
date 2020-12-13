@@ -4,6 +4,8 @@
 #include "Scene.h"
 #include "Body.h"
 #include "Character.h"
+#include "Platform.h"
+#include "SpikeBall.h"
 #include <SDL.h>
 class Scene4 :public Scene {
 protected:
@@ -13,6 +15,15 @@ protected:
 	Character* character;
 	Body* charBody;
 
+	SpikeBall* spikeBall;
+	Body* spikeBody;
+
+
+	Platform* P1;
+	Platform* P2;
+	Platform* P3;
+		
+	SDL_Surface* backgroundImage;
 	//delete this later
 	Vec3 min;
 	Vec3 max;
@@ -21,7 +32,6 @@ public:
 	Scene4(SDL_Window* sdlWindow);
 	~Scene4();
 	bool OnCreate();
-	bool CharacterOnGround;
 	void OnDestroy();
 	void Update(const float time);
 	void Render();
