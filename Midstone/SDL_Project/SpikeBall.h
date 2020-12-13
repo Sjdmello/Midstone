@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Body.h"
 #include <SDL.h>
+#include "Debug.h"
 
 class SpikeBall:public GameObject {
 protected:
@@ -14,6 +15,8 @@ protected:
 	float maxY;
 	float velCap;
 	Vec3 currentVel;
+
+	Debug system;
 public:
 	SpikeBall(Body* body, SDL_Surface* sprite, float minHeight, float maxHeight);
 	~SpikeBall();

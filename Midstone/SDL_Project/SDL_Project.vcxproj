@@ -31,6 +31,7 @@
     <ClInclude Include="Body.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Matrix.h" />
