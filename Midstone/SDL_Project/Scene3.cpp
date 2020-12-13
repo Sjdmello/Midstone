@@ -49,7 +49,7 @@ void Scene3::Update(const float time) {
 	spikeBall->Update(time);
 	//printf("%f %f %f \n", character->getPos().x, character->getPos().y, character->getPos().z);
 
-	//temp checks to keep character on screen
+	//checks to keep character on screen.
 	if (character->getPos().x > max.x - character->getPhys()->GetRad()) {
 		character->getPhys()->SetPos(Vec3(max.x - character->getPhys()->GetRad(), character->getPos().y, character->getPos().z));
 	}
@@ -62,6 +62,7 @@ void Scene3::Update(const float time) {
 	if (character->getPos().y < min.y + character->getPhys()->GetRad()) {
 		character->getPhys()->SetPos(Vec3(character->getPos().x, min.y + character->getPhys()->GetRad(), character->getPos().z));
 	}
+
 }
 
 void Scene3::Render() {

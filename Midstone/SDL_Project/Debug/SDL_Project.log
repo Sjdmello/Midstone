@@ -1,10 +1,7 @@
-﻿  GameManager.cpp
-  Scene3.cpp
+﻿  Scene3.cpp
 C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene3.cpp(39,27): warning C4150: deletion of pointer to incomplete type 'SDL_Window'; no destructor called
 C:\GameDev\SDL\include\SDL_video.h(90): message : see declaration of 'SDL_Window'
 C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene3.cpp(69,85): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
 C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene3.cpp(69,79): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
 C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\SDL_Project\Scene3.cpp(69,73): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
-  SpikeBall.cpp
-  Generating Code...
   SDL_Project.vcxproj -> C:\Users\lakeb\Documents\GitHub\Midstone\Midstone\Debug\SDL_Project.exe
