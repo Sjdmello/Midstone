@@ -36,28 +36,19 @@
     <ClCompile Include="Body.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ball.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SpikeBall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,22 +83,10 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ball.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpikeBall.h">
@@ -117,6 +96,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

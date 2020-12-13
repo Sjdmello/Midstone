@@ -23,19 +23,16 @@ bool Character::onCreate() {
 }
 
 void Character::onDestroy() {
-	//don't want those memory leaks
+	//clear all pointers.
 	if (physics) delete physics;
 	if (characterImage) delete characterImage;
 }
 
 void Character::Update(const float deltatime) {
-	/*doing this because the applyforce sets the accel directly so if we do multiple applyforce 
-	on the same tick it overwrites. We're running at 60fps so it should be fine. */
 
-	//printf("%f %f %f \n", physics->GetPos().x, physics->GetPos().y, physics->GetPos().z);
-	//system.debug(physics->GetVel());
 	system.debug(physics->GetPos());
 
+	//checks if the character is on the ground.
 	if (physics->GetPos().y == 37.0f) {
 		CharacterOnGround = true;
 	}
@@ -43,9 +40,10 @@ void Character::Update(const float deltatime) {
 		CanJump = true;
 	}
 
-
+	/*doing this because the applyforce sets the accel directly so if we do multiple applyforce
+	on the same tick it overwrites. We're running at 60fps so it should be fine. */
 	if (tickSwapper) {
-		//applies gravity to character.
+		//applies gravity to character if they are on ground.
 		if (!CharacterOnGround) {
 			physics->ApplyForce(Vec3(0.0f, -2.0f, 0.0f));
 		}
@@ -91,7 +89,6 @@ void Character::Update(const float deltatime) {
 	physics->Update(deltatime);
 	tickSwapper = !tickSwapper;
 	CharacterOnGround = false;
-	//moveDir = Vec3(0.0f, 0.0f, 0.0f);
 }
 
 void Character::Render() const {
@@ -136,6 +133,7 @@ void Character::HandleEvents(const SDL_Event& event) {
 		default:
 			break;
 		}
+		//reset so the character doesn't get more force after release of button.
 		moveDir = Vec3(0.0f, 0.0f, 0.0f);
 	}
 }

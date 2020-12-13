@@ -1,9 +1,7 @@
 #include "GameManager.h"
 #include "Window.h"
 #include "Timer.h"
-#include "Scene2.h"
-#include "Scene3.h"
-#include "Scene4.h"
+#include "GameScene.h"
 #include <iostream>
 
 GameManager::GameManager() {
@@ -33,7 +31,7 @@ bool GameManager::OnCreate() {
 		return false;
 	}
 
-	currentScene = new Scene4(ptr->GetSDL_Window());
+	currentScene = new GameScene(ptr->GetSDL_Window());
 	if (currentScene == nullptr) {
 		OnDestroy();
 		return false;

@@ -10,7 +10,6 @@ SpikeBall::SpikeBall(Body* body, SDL_Surface* sprite, float minHeight, float max
 }
 
 SpikeBall::~SpikeBall() {
-
 }
 
 bool SpikeBall::onCreate() {
@@ -43,8 +42,6 @@ void SpikeBall::Update(const float deltaTime) {
 	else if (currentVel.y < -velCap) {
 		physics->SetVel(Vec3(currentVel.x, -velCap + 1.0f, currentVel.z));
 	}
-
-	//system.debug(physics->GetVel());
 
 	physics->Update(deltaTime);
 }
