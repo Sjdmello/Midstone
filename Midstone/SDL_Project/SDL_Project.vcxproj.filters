@@ -54,6 +54,9 @@
     <ClCompile Include="Scene4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpikeBall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpikeBall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -39,7 +39,7 @@ void Character::Update(const float deltatime) {
 	
 	currentVel = physics->GetVel();
 
-	//sets a cap on the velocity
+	//sets a cap on the velocity.
 	currentVel = physics->GetVel();
 	if (currentVel.x > velCap) {
 		physics->SetVel(Vec3(velCap -1.0f, currentVel.y, currentVel.z));
@@ -79,17 +79,14 @@ void Character::HandleEvents(const SDL_Event& event) {
 	if (event.type == SDL_KEYDOWN) {
 		switch (event.key.keysym.scancode) {
 		case SDL_SCANCODE_A:
-			//printf("A is pressed\n");
 			moveDir = Vec3(-20.0f, 0.0f, 0.0f);
 			isMoving = true;
 			break;
 		case SDL_SCANCODE_D:
-			//printf("D is pressed\n");
 			moveDir = Vec3(20.0f, 0.0f, 0.0f);
 			isMoving = true;
 			break;
 		case SDL_SCANCODE_SPACE:
-			//printf("SPACE is pressed\n");
 			moveDir = Vec3(0.0f, 50.0f, 0.0f);
 			break;
 		default:
@@ -97,6 +94,7 @@ void Character::HandleEvents(const SDL_Event& event) {
 		}
 	}
 
+	//detects when character stops getting horizontal input so the character can slow to a stop.
 	if (event.type == SDL_KEYUP) {
 		switch (event.key.keysym.scancode) {
 		case SDL_SCANCODE_A:

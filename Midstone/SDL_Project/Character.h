@@ -12,6 +12,7 @@ protected:
 	bool tickSwapper;
 	bool isMoving;
 	float velCap;
+
 public:
 	Character(Body* body, SDL_Surface* sprite);
 	~Character();

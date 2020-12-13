@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "Body.h"
 #include "Character.h"
+#include "SpikeBall.h"
 #include <SDL.h>
 class Scene3 :public Scene {
 protected:
@@ -13,10 +14,12 @@ protected:
 	Character* character;
 	Body* charBody;
 
-	//delete this later
+	SpikeBall* spikeBall;
+	Body* spikeBody;
+
+	//to keep things on screen.
 	Vec3 min;
 	Vec3 max;
-	int frameCounter;
 	
 public:
 	Scene3(SDL_Window* sdlWindow);
