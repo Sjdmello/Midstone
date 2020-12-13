@@ -25,6 +25,8 @@ bool Scene3::OnCreate() {
 	spikeBody = new Body(Vec3(70.0f, 60.0f, 0.0f), Vec3(0.0f, 15.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 1.0f);
 	spikeBall = new SpikeBall(spikeBody, IMG_Load("SpikeBall.png"), 50.0f, 85.0f);
 
+	backgroundImage = IMG_Load("Background.jpg");
+
 	//screen size.
 	min = Vec3(-1.0f, 35.0f, 0.0f);
 	max = Vec3(95.5f, 150.5f, 1.0f);
@@ -39,6 +41,7 @@ void Scene3::OnDestroy() {
 	if (character) delete character;
 	if (spikeBody) delete spikeBody;
 	if (spikeBall) delete spikeBall;
+	if (backgroundImage) delete backgroundImage;
 }
 
 void Scene3::Update(const float time) {
@@ -73,7 +76,7 @@ void Scene3::Render() {
 	dstrect.h = 0;
 	dstrect.w = 0;
 
-	SDL_BlitSurface(IMG_Load("Background.jpg"), nullptr, screenSurface, &dstrect);
+	SDL_BlitSurface(backgroundImage, nullptr, screenSurface, &dstrect);
 
 	position = spikeBall->getPos();
 	screenPosition = projection * position;

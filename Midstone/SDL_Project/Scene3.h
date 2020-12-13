@@ -17,6 +17,8 @@ protected:
 	SpikeBall* spikeBall;
 	Body* spikeBody;
 
+	SDL_Surface* backgroundImage;
+
 	//to keep things on screen.
 	Vec3 min;
 	Vec3 max;
